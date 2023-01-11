@@ -17,7 +17,7 @@ auto MinecraftUIRenderContext::drawText(Font* font, Vec2<float> textPos, std::st
 	CaretMeasureData caretMeasureData = CaretMeasureData();
 	
 	auto textRect = Rect(textPos.x, textPos.x + (textPos.x * fontSize), textPos.y, textPos.y + (textPos.y * fontSize / 2));
-	this->drawText(font, textRect.get(), &text, color.get(), color.a, 0, &textMeasureData, &caretMeasureData);
+	this->drawText(font, textRect.get(), text, color.get(), color.a, 0, &textMeasureData, &caretMeasureData);
 
 };
 
@@ -34,7 +34,7 @@ auto MinecraftUIRenderContext::getTextLen(Font* font, std::string text, float fo
 	if (font == nullptr)
 		return 0.f;
 
-	return this->getLineLength(font, &text, fontSize, false);
+	return this->getLineLength(font, text, fontSize, false);
 
 };
 

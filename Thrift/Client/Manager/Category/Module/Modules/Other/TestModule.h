@@ -4,7 +4,7 @@
 
 class TestModule : public Module {
 public:
-	TestModule(Category* c) : Module(c, "Test Module") {
+	TestModule(Category* c) : Module(c, "Test Module", "For testing shiz") {
 
 		this->isEnabled = true;
 		this->debugState = true;

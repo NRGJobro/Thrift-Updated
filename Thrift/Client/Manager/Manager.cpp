@@ -45,6 +45,7 @@ Manager::Manager(Client* c) {
 
 };
 
+//Hook Includes
 #include "Hook/Hooks/LoopbackPacketSender/HookLoopbackPacketSender.h"
 #include "Hook/Hooks/ClientInstance/HookClientInstance.h"
 #include "Hook/Hooks/SwapChain/HookSwapChain.h"
@@ -71,65 +72,43 @@ auto Manager::initHooks(void) -> StatusData {
 
 };
 
-#include "Category/Module/Modules/Movement/AirJump.h"
+//Include Modules
 
+/*Movement*/
+#include "Category/Module/Modules/Movement/AirJump.h"
+#include "Category/Module/Modules/Movement/AutoSprint.h"
+
+/*Visuals*/
 #include "Category/Module/Modules/Visual/TabGui.h"
 #include "Category/Module/Modules/Visual/RainbowText.h"
 
+/*Misc*/
 #include "Category/Module/Modules/Other/TestModule.h"
 
 auto Manager::initCategories(void) -> void {
-
+	
+	/* Combat */
 	auto combat = new Category(this, "Combat");
 
-	auto player = new Category(this, "Player");
-
-	auto move = new Category(this, "Move");
-
-	auto visuals = new Category(this, "Visuals");
-
-	auto world = new Category(this, "World");
-
-	auto other = new Category(this, "Misc");
-
-
-	/* Combat */
-
-	
-	// WIP
-
-
 	/* Movement */
-	
-	
+	auto move = new Category(this, "Move");
 	new AirJump(move);
-
-	
-	// WIP
-
+	new AutoSprint(move);
 
 	/* Player */
-
-	
-	// WIP
+	auto player = new Category(this, "Player");
 
 
 	/* Visuals */
-
-	
+	auto visuals = new Category(this, "Visuals");
 	new TabGui(visuals);
 	new RainbowText(visuals);
 
-
 	/* World */
-
-	
-	// WIP
-
+	auto world = new Category(this, "World");
 
 	/* Other */
-
-	
+	auto other = new Category(this, "Misc");
 	new TestModule(other);
 
 };

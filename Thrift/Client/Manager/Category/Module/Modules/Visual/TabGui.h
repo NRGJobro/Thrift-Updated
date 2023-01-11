@@ -4,9 +4,9 @@
 
 class TabGui : public Module {
 public:
-	TabGui(Category* c) : Module(c, "TabGui") {
+	TabGui(Category* c) : Module(c, "TabGui", "What do u think it is genius?") {
 
-		this->isEnabled = false;
+		this->isEnabled = true;
 		this->key = VK_TAB;
 
 	};

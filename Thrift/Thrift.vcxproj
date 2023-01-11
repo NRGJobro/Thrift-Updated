@@ -145,9 +145,7 @@
     <ClCompile Include="Client\Kiero\Kiero.cpp" />
     <ClCompile Include="Client\Manager\Category\Category.cpp" />
     <ClCompile Include="Client\Manager\Category\Module\Module.cpp" />
-    <ClCompile Include="Client\Manager\Category\Module\Modules\Movement\AirJump.cpp" />
     <ClCompile Include="Client\Manager\Category\Module\Modules\Other\TestModule.cpp" />
-    <ClCompile Include="Client\Manager\Category\Module\Modules\Visual\RainbowText.cpp" />
     <ClCompile Include="Client\Manager\Category\Module\Modules\Visual\TabGui.cpp" />
     <ClCompile Include="Client\Manager\Hook\Hook.cpp" />
     <ClCompile Include="Client\Manager\Hook\Hooks\ClientInstance\HookClientInstance.cpp" />
@@ -158,6 +156,7 @@
     <ClCompile Include="Client\SDK\Classes\MinecraftUIRenderContext.cpp" />
     <ClCompile Include="Client\SDK\Classes\Packet.cpp" />
     <ClCompile Include="Client\SDK\Minecraft.cpp" />
+    <ClCompile Include="Client\Utils\TimeUtils.cpp" />
     <ClCompile Include="Client\Utils\Utils.cpp" />
     <ClCompile Include="Thrift.cpp" />
   </ItemGroup>
@@ -167,6 +166,7 @@
     <ClInclude Include="Client\Manager\Category\Category.h" />
     <ClInclude Include="Client\Manager\Category\Module\Module.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Movement\AirJump.h" />
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Movement\AutoSprint.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Other\TestModule.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Visual\RainbowText.h" />
     <ClInclude Include="Client\Manager\Category\Module\Modules\Visual\TabGui.h" />
@@ -181,9 +181,13 @@
     <ClInclude Include="Client\SDK\Classes\LoopbackPacketSender.h" />
     <ClInclude Include="Client\SDK\Classes\MinecraftGame.h" />
     <ClInclude Include="Client\SDK\Classes\MinecraftUIRenderContext.h" />
+    <ClInclude Include="Client\SDK\Classes\MoveInputHandler.h" />
     <ClInclude Include="Client\SDK\Classes\Packet.h" />
     <ClInclude Include="Client\SDK\Classes\Player.h" />
+    <ClInclude Include="Client\SDK\Classes\TextHolder.h" />
     <ClInclude Include="Client\SDK\Minecraft.h" />
+    <ClInclude Include="Client\Utils\Math.h" />
+    <ClInclude Include="Client\Utils\TimeUtils.h" />
     <ClInclude Include="Client\Utils\Utils.h" />
   </ItemGroup>
   <ItemGroup>

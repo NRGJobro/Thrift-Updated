@@ -12,13 +12,11 @@ auto Packet::setVTable(uintptr_t sig) -> void {
 
 };
 
-TextPacket::TextPacket(void) {
-
+void TextPacket::SetVTable() {
     static auto sig = (uintptr_t)NULL;
 
     if (!sig)
         sig = Utils::findSig("48 8D 05 ? ? ? ? 48 89 85 ? ? ? ? 48 8D 8D ? ? ? ? E8 ? ? ? ? 48 8D 8D ? ? ? ? E8 ? ? ? ? 48 8D 8D ? ? ? ? E8 ? ? ? ? 48 8D");
 
     this->setVTable<TextPacket>(sig);
-
 };

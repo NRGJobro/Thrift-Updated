@@ -1,10 +1,11 @@
 #include "Module.h"
 #include "../Category.h"
 
-Module::Module(Category* c, std::string n) {
+Module::Module(Category* c, std::string n, std::string d) {
 
 	this->category = c;
 	this->name = n;
+	this->description = d;
 
 	this->category->modules.push_back(this);
 

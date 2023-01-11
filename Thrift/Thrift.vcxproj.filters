@@ -54,9 +54,6 @@
     <ClCompile Include="Client\Manager\Category\Module\Modules\Visual\TabGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Client\Manager\Category\Module\Modules\Visual\RainbowText.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Client\Manager\Hook\Hooks\LoopbackPacketSender\HookLoopbackPacketSender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,7 +66,7 @@
     <ClCompile Include="Client\Manager\Hook\Hooks\SwapChain\Hook_SwapChain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Client\Manager\Category\Module\Modules\Movement\AirJump.cpp">
+    <ClCompile Include="Client\Utils\TimeUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -141,6 +138,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Client\Manager\Category\Module\Modules\Movement\AirJump.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Manager\Category\Module\Modules\Movement\AutoSprint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\SDK\Classes\MoveInputHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\SDK\Classes\TextHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Utils\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Utils\TimeUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

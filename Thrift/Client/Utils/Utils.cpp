@@ -1,5 +1,4 @@
 #include "Utils.h"
-
 std::string Utils::debugPath = Utils::getRoamPath();
 
 auto Utils::getDll(void) -> HMODULE {
@@ -267,4 +266,12 @@ auto Utils::ApplyRainbow(float* rcolors, float modifier = 0.003f) -> void {
 
 	Utils::ColorConvertHSVtoRGB(rcolors[0], rcolors[1], rcolors[2], rcolors[0], rcolors[1], rcolors[2]);
 
+}
+Color Utils::getGoodRainbow(float speed, float saturation, float brightness, long index) {
+	float Speed = speed * 1000;
+
+	float hue = (((TimeUtils::getCurrentMs() - index) % (int)(Speed)) / (float)(Speed));
+	float r, g, b = 0;
+	Utils::ColorConvertHSVtoRGB(1 - hue, saturation, brightness, r, g, b);
+	return Color(r * 255, g * 255, b * 255);
 };

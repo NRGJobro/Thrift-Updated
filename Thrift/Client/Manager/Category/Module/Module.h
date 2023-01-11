@@ -8,9 +8,10 @@ class Category;
 class Module {
 public:
 	std::string name;
+	std::string description;
 	Category* category;
 public:
-	Module(Category*, std::string);
+	Module(Category*, std::string, std::string);
 public:
 	bool isEnabled = false, wasEnabled = false;
 	uint64_t key = NULL;
