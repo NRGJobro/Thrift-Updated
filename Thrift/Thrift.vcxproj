@@ -178,6 +178,7 @@
     <ClInclude Include="Client\Manager\Manager.h" />
     <ClInclude Include="Client\SDK\Classes\Actor.h" />
     <ClInclude Include="Client\SDK\Classes\ClientInstance.h" />
+    <ClInclude Include="Client\SDK\Classes\DirectPlayerMovementProxy.h" />
     <ClInclude Include="Client\SDK\Classes\LoopbackPacketSender.h" />
     <ClInclude Include="Client\SDK\Classes\MinecraftGame.h" />
     <ClInclude Include="Client\SDK\Classes\MinecraftUIRenderContext.h" />

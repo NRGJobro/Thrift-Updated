@@ -13,13 +13,13 @@ private:
 public:
 	auto getLocalPlayer(void) -> class Player* {
 		using GetLocalPlayer = Player * (__thiscall*)(ClientInstance*);
-		GetLocalPlayer _GetLocalPlayer = (GetLocalPlayer)(this->VTable[24]);
+		GetLocalPlayer _GetLocalPlayer = (GetLocalPlayer)(this->VTable[25]);
 		return _GetLocalPlayer(this);
 	};
 public:
-	BUILD_ACCESS(class LoopbackPacketSender*, LoopbackPacketSender, 0xE0);
-	BUILD_ACCESS(class MinecraftGame*, MinecraftGame, 0xB8);
-	BUILD_ACCESS(class MoveInputHandler*, MoveInputHandler, 0xF8);
+	BUILD_ACCESS(class LoopbackPacketSender*, LoopbackPacketSender, 0xD0);//Not sure but should be it (I hope)
+	BUILD_ACCESS(class MinecraftGame*, MinecraftGame, 0xB0);
+	BUILD_ACCESS(class MoveInputHandler*, MoveInputHandler, 0x108);
 public:
 	AS_FIELD(class Player*, LocalPlayer, getLocalPlayer);
 };
