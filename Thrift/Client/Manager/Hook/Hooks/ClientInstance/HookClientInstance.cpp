@@ -62,6 +62,8 @@ auto RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) -> void {
 
 				if (mod->isEnabled)
 					mod->onRender(ctx);
+				// for now we draw on each UIScene but in the future i will detect it with root control
+				//dont wanna give it to the public yet
 
 			};
 
