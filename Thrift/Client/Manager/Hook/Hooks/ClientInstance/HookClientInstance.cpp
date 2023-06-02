@@ -71,6 +71,7 @@ auto RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) -> void {
 
 	};
 
+	Minecraft::setRenderContext(ctx);
 	Minecraft::setClientInstance(ctx->clientInstance);
 
 	_RenderContext(a1, ctx);

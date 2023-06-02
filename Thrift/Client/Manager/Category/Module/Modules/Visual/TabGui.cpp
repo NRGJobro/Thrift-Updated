@@ -1,6 +1,7 @@
 #include "TabGui.h"
 #include "../../../../Manager.h"
 #include "../../../../../Client.h"
+#include "../../../../../Utils/Render/RenderUtils.h"
 
 auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 
@@ -30,12 +31,12 @@ auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 	auto logoText = client->name;
 	auto fontSize = 1.f;
 
-	auto xStretch = ctx->getTextLen(nullptr, logoText, fontSize);
+	auto xStretch = renderUtils->getTextLen(nullptr, logoText, fontSize);
 
 	for (auto category : mgr->categories) {
 
 		auto name = category->name;
-		auto currLen = ctx->getTextLen(nullptr, name, fontSize);
+		auto currLen = renderUtils->getTextLen(nullptr, name, fontSize);
 
 		if (currLen > xStretch)
 			xStretch = currLen;
@@ -45,20 +46,20 @@ auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 	auto startPos = Vec2<float>(4.f, 4.f);
 	auto logoRect = Rect(startPos.x - 2.f, startPos.y - 2.f, (startPos.x + 2.f) + xStretch, startPos.y + (fontSize * 10));
 
-	ctx->drawText(nullptr, startPos, logoText, logoTextColor, fontSize);
-	ctx->fillRectangle(logoRect, logoBgColor);
+	renderUtils->drawText(nullptr, startPos, logoText, logoTextColor, fontSize);
+	renderUtils->fillRectangle(logoRect, logoBgColor);
 
 	auto I = 0;
 	for (auto category : mgr->categories) {
 
-		ctx->drawText(nullptr, Vec2<float>(startPos.x, startPos.y + (I * 10) + 10.f), category->name, textColor, fontSize);
+		renderUtils->drawText(nullptr, Vec2<float>(startPos.x, startPos.y + (I * 10) + 10.f), category->name, textColor, fontSize);
 		I++;
 
 	};
 
 	auto bgRect = Rect(logoRect.x, logoRect.w, logoRect.z, logoRect.w + (mgr->categories.size() * 10));
 	
-	ctx->fillRectangle(bgRect, bgColor);
+	renderUtils->fillRectangle(bgRect, bgColor);
 
 	if (selectedCat) {
 
@@ -66,7 +67,7 @@ auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 			this->catAnimOff = bgRect.x + 2.f;
 
 		this->reachOff(&this->catAnimOff, (bgRect.z - 2.f), this->animModifier);
-		ctx->fillRectangle(Rect(bgRect.x + 2.f, bgRect.y + (indexCat * 10) + 9.f, this->catAnimOff, bgRect.y + (indexCat * 10) + 10.f), logoBgColor);
+		renderUtils->fillRectangle(Rect(bgRect.x + 2.f, bgRect.y + (indexCat * 10) + 9.f, this->catAnimOff, bgRect.y + (indexCat * 10) + 10.f), logoBgColor);
 
 		auto category = mgr->categories.at(this->indexCat);
 		auto modules = category->modules;
@@ -75,7 +76,7 @@ auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 
 		for (auto mod : modules) {
 
-			auto currLen = ctx->getTextLen(nullptr, mod->name, fontSize);
+			auto currLen = renderUtils->getTextLen(nullptr, mod->name, fontSize);
 
 			if (currLen > modsXStretch)
 				modsXStretch = currLen;
@@ -88,12 +89,12 @@ auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 		I = 0;
 		for (auto mod : modules) {
 
-			ctx->drawText(nullptr, Vec2<float>(modsRect.x + 2.f, modsRect.y + (I * 10)), mod->name, ((mod->isEnabled || rainbowText != nullptr && rainbowText == mod) ? Color(30.f, 230.f, 120.f, this->alpha) : textColor), fontSize);
+			renderUtils->drawText(nullptr, Vec2<float>(modsRect.x + 2.f, modsRect.y + (I * 10)), mod->name, ((mod->isEnabled || rainbowText != nullptr && rainbowText == mod) ? Color(30.f, 230.f, 120.f, this->alpha) : textColor), fontSize);
 			I++;
 
 		};
 
-		ctx->fillRectangle(modsRect, bgColor);
+		renderUtils->fillRectangle(modsRect, bgColor);
 
 		if (this->selectedMod) {
 
@@ -101,7 +102,7 @@ auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 				this->modAnimOff = modsRect.x + 2.f;
 
 			this->reachOff(&this->modAnimOff, (modsRect.z - 2.f), this->animModifier);
-			ctx->fillRectangle(Rect(modsRect.x + 2.f, modsRect.y + (indexMod * 10) + 9.f, this->modAnimOff, modsRect.y + (indexMod * 10) + 10.f), logoBgColor);
+			renderUtils->fillRectangle(Rect(modsRect.x + 2.f, modsRect.y + (indexMod * 10) + 9.f, this->modAnimOff, modsRect.y + (indexMod * 10) + 10.f), logoBgColor);
 
 		};
 
@@ -110,7 +111,7 @@ auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 	if (rainbowText != nullptr)
 		rainbowText->isEnabled = true;
 	
-	ctx->flushText(0.f);
+	renderUtils->flush();
 };
 
 auto TabGui::onKey(uint64_t key, bool isDown, bool* cancelSend) -> void {

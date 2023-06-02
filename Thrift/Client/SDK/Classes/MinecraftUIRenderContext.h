@@ -46,10 +46,4 @@ private:
 public:
     virtual auto drawRectangle(const float*, const float*, float, int) -> void;
     virtual auto fillRectangle(const float*, const float*, float) -> void;
-public:
-    auto drawText(Font*, Vec2<float>, std::string, Color, float) -> void;
-    auto getTextLen(Font*, std::string, float) -> float;
-public:
-    auto drawRectangle(Rect, Color, int) -> void;
-    auto fillRectangle(Rect, Color) -> void;
 };

@@ -6,6 +6,7 @@
 #include "MoveInputHandler.h"
 #include "MinecraftGame.h"
 #include "Player.h"
+#include "GuiData.h"
 
 class ClientInstance {
 private:
@@ -20,6 +21,7 @@ public:
 	BUILD_ACCESS(class LoopbackPacketSender*, LoopbackPacketSender, 0xD0);//Not sure but should be it (I hope)
 	BUILD_ACCESS(class MinecraftGame*, MinecraftGame, 0xB0);
 	BUILD_ACCESS(class MoveInputHandler*, MoveInputHandler, 0x108);
+	BUILD_ACCESS(class GuiData*, GuiData, 0x510);
 public:
 	AS_FIELD(class Player*, LocalPlayer, getLocalPlayer);
 };

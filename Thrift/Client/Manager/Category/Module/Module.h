@@ -24,6 +24,7 @@ public:
 	virtual auto onEnable(void) -> void {};
 	virtual auto onDisable(void) -> void {};
 public:
+	virtual auto onImGuiRender() -> void {};
 	virtual auto onRender(MinecraftUIRenderContext*) -> void {};
 	virtual auto onDrawText(MinecraftUIRenderContext*, Font*, float*, std::string*, float*, float, unsigned int, const TextMeasureData*, const CaretMeasureData*) -> void {};
 public:

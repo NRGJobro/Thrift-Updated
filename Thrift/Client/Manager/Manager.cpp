@@ -49,6 +49,7 @@ Manager::Manager(Client* c) {
 #include "Hook/Hooks/LoopbackPacketSender/HookLoopbackPacketSender.h"
 #include "Hook/Hooks/ClientInstance/HookClientInstance.h"
 #include "Hook/Hooks/SwapChain/HookSwapChain.h"
+#include "Hook/Hooks/MouseButton/HookMouse.h"
 #include "Hook/Hooks/Key/HookKey.h"
 
 auto Manager::initHooks(void) -> StatusData {
@@ -58,7 +59,8 @@ auto Manager::initHooks(void) -> StatusData {
 
 	new Hook_LoopbackPacketSender(this);
 	new Hook_ClientInstance(this);
-	//new Hook_SwapChain(this);
+	new Hook_SwapChain(this);
+	new Hook_Mouse(this);
 	new Hook_Key(this);
 
 	for (auto hook : this->hooks) {

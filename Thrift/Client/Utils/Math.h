@@ -28,6 +28,64 @@ public:
 			this->y != v.y
 			);
 	};
+
+	/* Multiply */
+
+	Vec2<T> operator * (Vec2<T> mult) {
+		return Vec2<T>(this->x * mult.x, this->y * mult.y);
+	}
+
+	Vec2<T> operator *= (Vec2<T> mult) {
+		return Vec2<T>(this->x * mult.x, this->y * mult.y);
+	}
+
+	Vec2<T> operator * (float mult) {
+		return Vec2<T>(this->x * mult, this->y * mult);
+	}
+
+	Vec2<T> operator *= (float mult) {
+		return Vec2<T>(this->x * mult, this->y * mult);
+	}
+
+
+	/* Divide */
+
+	Vec2<T> operator / (Vec2<T> div) {
+		return Vec2<T>(this->x / div.x, this->y / div.y);
+	}
+
+	Vec2<T> operator /= (Vec2<T> div) {
+		return Vec2<T>(this->x / div.x, this->y / div.y);
+	}
+
+	Vec2<T> operator / (float div) {
+		return Vec2<T>(this->x / div, this->y / div);
+	}
+
+	Vec2<T> operator /= (float div) {
+		return Vec2<T>(this->x / div, this->y / div);
+	}
+
+	/* Add */
+
+	Vec2<T> operator + (Vec2<T> add) {
+		return Vec2<T>(this->x + add.x, this->y + add.y);
+	}
+
+	Vec2<T> operator += (Vec2<T> add) {
+		return Vec2<T>(this->x + add.x, this->y + add.y);
+	}
+
+	/* Subtract */
+
+	Vec2<T> operator - (Vec2<T> sub) {
+		return Vec2<T>(this->x - sub.x, this->y - sub.y);
+	}
+
+	Vec2<T> operator -= (Vec2<T> sub) {
+		return Vec2<T>(this->x - sub.x, this->y - sub.y);
+	}
+
 public:
 	Vec2<T> div(T v) {
 		return Vec2<T>(x / v, y / v);
