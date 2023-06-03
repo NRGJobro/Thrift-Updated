@@ -164,6 +164,7 @@
     <ClCompile Include="Client\Manager\Manager.cpp" />
     <ClCompile Include="Client\SDK\Classes\Packet.cpp" />
     <ClCompile Include="Client\SDK\Minecraft.cpp" />
+    <ClCompile Include="Client\Utils\Render\ImGuiUtils.cpp" />
     <ClCompile Include="Client\Utils\Render\RenderUtils.cpp" />
     <ClCompile Include="Client\Utils\TimeUtils.cpp" />
     <ClCompile Include="Client\Utils\Utils.cpp" />

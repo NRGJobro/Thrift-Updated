@@ -113,9 +113,10 @@ auto TestModule::onImGuiRender() -> void {
         }
     }
     ImGui::End();
+    ImFont* font = ImGui::GetFont();
 
-    ImGuiUtils::drawText("Balls lmfao", Vec2<float>(100,100), Color(0.f, 0.f, 255.f), 1.f, 1.f, true);
-    ImGuiUtils::renderOutlinedText("Outlined Balls lmfao", Vec2<float>(200,200), Color(255.f, 0.f, 0.f), 1.f, 1.f, true);
+    ImGuiUtils::drawText(font, Vec2<float>(100,100), "Balls lmfao", Color(0.f, 0.f, 255.f, 1.f), 1.f, true);
+    ImGuiUtils::renderOutlinedText("Outlined Balls lmfao", Vec2<float>(200,200), Color(255.f, 0.f, 0.f, 1.f), Color(0.f, 0.f, 0.f, 1.f), 1.f, font);
     ImGuiUtils::drawRect(Rect(100, 100, 200, 200), Color(255.f, 0.f, 255.f), 1.f, 1.f);
 };
 
