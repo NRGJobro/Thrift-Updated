@@ -56,7 +56,7 @@ auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flag
 
     if (SUCCEEDED(ppSwapChain->GetDevice(IID_PPV_ARGS(&d3d11Device)))) {
         deviceType = SwapChain_DeviceType::D3D11;
-    } else if (SUCCEEDED(ppSwapChain->GetDevice(IID_PPV_ARGS(&d3d12Device)))) {
+    }else if (SUCCEEDED(ppSwapChain->GetDevice(IID_PPV_ARGS(&d3d12Device)))) {
         deviceType = SwapChain_DeviceType::D3D12;
     };
 
@@ -123,7 +123,7 @@ auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flag
 
             // Create a brush
             ID2D1SolidColorBrush* blueBrush;
-            d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::White), &blueBrush);
+            d2dRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Blue), &blueBrush);
 
             // Draw the text
             d2dRenderTarget->BeginDraw();
