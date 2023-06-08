@@ -17,6 +17,6 @@ public:
     }
 
     auto setSprinting(bool doIt) -> void {
-        return Utils::CallVFunc<278, void, bool>(this, doIt);
+        //return Utils::CallVFunc<279, void, bool>(this, doIt); idk it rn bre
     };
 };

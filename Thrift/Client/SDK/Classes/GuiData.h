@@ -13,6 +13,6 @@ public:
 	virtual void Constructor();
 
 	float* getScale() {
-		return reinterpret_cast<float*>((__int64)this + 0x4C);
+		return reinterpret_cast<float*>((__int64)this + 0x4C);//Good as of 1.20
 	};
 };

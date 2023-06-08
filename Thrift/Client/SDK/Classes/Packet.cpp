@@ -12,6 +12,14 @@ auto Packet::setVTable(uintptr_t sig) -> void {
 
 };
 
+auto Packet::getId() -> int {
+    return Utils::CallVFunc<1, int>(this);
+}
+
+auto Packet::getName() -> TextHolder* {
+    return Utils::CallVFunc<2, TextHolder*>(this, new TextHolder());
+}
+
 void TextPacket::SetVTable() {
     static auto sig = (uintptr_t)NULL;
 

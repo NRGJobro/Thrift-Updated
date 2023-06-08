@@ -14,14 +14,14 @@ private:
 public:
 	auto getLocalPlayer(void) -> class Player* {
 		using GetLocalPlayer = Player * (__thiscall*)(ClientInstance*);
-		GetLocalPlayer _GetLocalPlayer = (GetLocalPlayer)(this->VTable[25]);
+		GetLocalPlayer _GetLocalPlayer = (GetLocalPlayer)(this->VTable[27]);//I think?
 		return _GetLocalPlayer(this);
 	};
 public:
 	BUILD_ACCESS(class LoopbackPacketSender*, LoopbackPacketSender, 0xD0);//Not sure but should be it (I hope)
-	BUILD_ACCESS(class MinecraftGame*, MinecraftGame, 0xB0);
-	BUILD_ACCESS(class MoveInputHandler*, MoveInputHandler, 0x108);
-	BUILD_ACCESS(class GuiData*, GuiData, 0x510);
+	BUILD_ACCESS(class MinecraftGame*, MinecraftGame, 0xB0); //Good as of 1.20
+	BUILD_ACCESS(class MoveInputHandler*, MoveInputHandler, 0x120);//Good as of 1.20
+	BUILD_ACCESS(class GuiData*, GuiData, 0x510);//Good as of 1.20
 public:
 	AS_FIELD(class Player*, LocalPlayer, getLocalPlayer);
 };

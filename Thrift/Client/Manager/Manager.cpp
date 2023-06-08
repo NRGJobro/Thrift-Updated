@@ -57,11 +57,11 @@ auto Manager::initHooks(void) -> StatusData {
 	if (MH_Initialize() != MH_OK)
 		return StatusData(MethodStatus::Error, "Failed to Initialize MinHook");
 
-	new Hook_LoopbackPacketSender(this);
 	new Hook_ClientInstance(this);
 	new Hook_SwapChain(this);
 	new Hook_Mouse(this);
 	new Hook_Key(this);
+	new Hook_LoopbackPacketSender(this);
 
 	for (auto hook : this->hooks) {
 

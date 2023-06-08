@@ -11,6 +11,15 @@ private:
 public:
     template<typename P>
     auto setVTable(unsigned long long) -> void;
+
+	template <class T>
+	auto isInstanceOf() -> bool {
+		T packet;
+		return (packet.VTable == this->VTable);
+	};
+
+	auto getId() -> int;
+	auto getName() -> TextHolder*;
 };
 
 class TextPacket : public Packet {

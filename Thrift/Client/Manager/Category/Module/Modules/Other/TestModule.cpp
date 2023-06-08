@@ -133,9 +133,13 @@ auto TestModule::onPacket(LoopbackPacketSender* _this, Packet* packet, bool* can
 
     Utils::debugOutput("Minecraft.Windows.exe+" + o.str());*/
 
-    if (packet->VTable == TextPacket().VTable) {
-		std::string message = ((TextPacket*)packet)->message.getText();
+    if (packet->isInstanceOf<TextPacket>()) {
+        auto textpacket = reinterpret_cast<TextPacket*>(packet);
+    	std::string message = textpacket->message.getText();
         Utils::debugOutput("Text Packet: " + message);
     }
+
+    //std::string name = (packet)->getName()->getText();
+   // Utils::debugOutput(name);
 
 };
