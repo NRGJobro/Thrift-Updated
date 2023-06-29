@@ -66,6 +66,7 @@ auto Utils::findSig(const char* szSignature) -> unsigned long long {
 		};
 	};
 
+	Utils::debugOutput("Sig dead:" + (std::string)szSignature);
 	return NULL;
 
 };

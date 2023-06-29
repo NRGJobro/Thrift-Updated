@@ -324,3 +324,15 @@ public:
 		return v;
 	};
 };
+
+struct AABB {
+	Vec3<float> lower;
+	Vec3<float> upper;
+	Vec2<float> size;
+	AABB() {}
+	AABB(Vec3<float> l, Vec3<float> h) : lower(l), upper(h) {};
+	AABB(const AABB& aabb) {
+		lower = Vec3<float>(aabb.lower);
+		upper = Vec3<float>(aabb.upper);
+	}
+};

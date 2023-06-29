@@ -1,6 +1,5 @@
 #pragma once
 #include "../../Utils/Utils.h"
-struct AABB;
 class MobEffect;
 class BlockLegacy;
 class Block;

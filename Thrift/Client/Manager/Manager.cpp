@@ -79,6 +79,10 @@ auto Manager::initHooks(void) -> StatusData {
 /*Movement*/
 #include "Category/Module/Modules/Movement/AirJump.h"
 #include "Category/Module/Modules/Movement/AutoSprint.h"
+#include "Category/Module/Modules/Movement/AutoJump.h"
+
+/*Player*/
+#include "Category/Module/Modules/Player/Jesus.h"
 
 /*Visuals*/
 #include "Category/Module/Modules/Visual/TabGui.h"
@@ -96,10 +100,11 @@ auto Manager::initCategories(void) -> void {
 	auto move = new Category(this, "Move");
 	new AirJump(move);
 	new AutoSprint(move);
+	new AutoJump(move);
 
 	/* Player */
 	auto player = new Category(this, "Player");
-
+	new Jesus(player);
 
 	/* Visuals */
 	auto visuals = new Category(this, "Visuals");

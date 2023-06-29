@@ -20,7 +20,6 @@ public:
 	};
 
 	auto getMoveTurnInput() -> class MoveInputHandler* {
-		uint32_t id = this->getLocalPlayer()->entityIdentifier;
 		auto* player = this->getLocalPlayer();
 		using MoveInputComponent_try_get = class MoveInputHandler* (__cdecl*)(void*, EntityId*);
 		static MoveInputComponent_try_get MoveInputComponent_try_getFunc = reinterpret_cast<MoveInputComponent_try_get>(Utils::findSig("40 53 48 83 EC 20 48 8B DA BA 2E CD 8B 46"));//dont mind shit sig :heart:
