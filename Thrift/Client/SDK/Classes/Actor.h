@@ -5,6 +5,16 @@
 
 // Classes/ Structs
 class DirectPlayerMovementProxy;
+class EntityRegistry;
+
+struct EntityId {
+    uint32_t id;
+};
+
+struct EntityContext {
+    EntityRegistry* registry;
+    EntityId id;
+};
 
 class Actor {
 public:
@@ -15,8 +25,7 @@ public:
         originalFunction(this, &movementProxyPointer);
         return (DirectPlayerMovementProxy*)movementProxyPointer.get();
     }
-
-    auto setSprinting(bool doIt) -> void {
-        //return Utils::CallVFunc<279, void, bool>(this, doIt); idk it rn bre
-    };
+public:
+    BUILD_ACCESS(struct EntityContext, entityContext, 0x8);
+    BUILD_ACCESS(uint32_t, entityIdentifier, 0x10);
 };

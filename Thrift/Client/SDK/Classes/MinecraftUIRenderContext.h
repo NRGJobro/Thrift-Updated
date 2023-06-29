@@ -7,9 +7,12 @@
 class TextMeasureData {
 public:
     float scale;
+    int idk;
+    bool displayShadow;
 public:
-    TextMeasureData(float scale = 1.f) {
+    TextMeasureData(float scale = 1.f, bool shaddow = true) {
         this->scale = scale;
+        this->displayShadow = shaddow;
     };
 };
 

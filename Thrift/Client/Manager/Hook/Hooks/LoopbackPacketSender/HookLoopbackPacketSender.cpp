@@ -37,13 +37,12 @@ auto SendCallback(LoopbackPacketSender* _this, Packet* packet) -> void {
 auto Hook_LoopbackPacketSender::init(void) -> StatusData {
 
 	lpMgr = this->mgr;
-	auto sig = Utils::findSig("48 8D 05 ? ? ? ? 48 89 01 48 8B C3 48 89 51");//Idk the new one
+	auto loopbackPacketSender = Minecraft::getClientInstance()->LoopbackPacketSender;
 
-	if(!sig)
-		return StatusData(MethodStatus::Error, "[LoopbackPacketSender::send Hook] Failed to find Signature!");
+	if(!loopbackPacketSender)
+		return StatusData(MethodStatus::Error, "[LoopbackPacketSender::send Hook] ClientInstance was NULL!");
 
-	auto offset = *(int*)(sig + 3);
-	auto VTable = reinterpret_cast<uintptr_t**>(sig + offset + 7);
+	uintptr_t** VTable = reinterpret_cast<uintptr_t**>(*(uintptr_t*)loopbackPacketSender);
 
 	if(MH_CreateHook((void*)VTable[1], &SendCallback, reinterpret_cast<LPVOID*>(&_Send)) != MH_OK)
 		return StatusData(MethodStatus::Error, "[LoopbackPacketSender::send Hook] Failed to create hook!");
