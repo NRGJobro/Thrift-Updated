@@ -42,7 +42,7 @@ auto Hook_LoopbackPacketSender::init(void) -> StatusData {
 	if(!addr)
             return StatusData(MethodStatus::Error, "[LoopbackPacketSender Hook] Cannot retrieve the LoopbackPacketSender vtable!");
 
-	int offset = *reinterpret_cast<int*>(sig + shift);
+	int offset = *reinterpret_cast<int*>(sig + 3);
 	uintptr_t** VTable = addr + offset + 7;
 
 	if(MH_CreateHook((void*)VTable[1], &SendCallback, reinterpret_cast<LPVOID*>(&_Send)) != MH_OK)
