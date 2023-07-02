@@ -37,7 +37,7 @@ auto SendCallback(LoopbackPacketSender* _this, Packet* packet) -> void {
 auto Hook_LoopbackPacketSender::init(void) -> StatusData {
 
 	lpMgr = this->mgr;
-	auto sig = Utils::findSig("48 8D 05 C1 A9 F2 02 48 8B 5C 24 30 48 89 06 33 C0 48 89 7E 20 48 89 46 28 48 89 46 30 48 89 46 38 48 89 46 40 48 89 46 48 48 89 46 50 48 89 46 58 48 8B C6 48 8B 74 24 38 48 83 C4 20 5F C3 CC 48 89 5C 24 08 57 48 83 EC 20 48 8B D9 8B FA");
+	auto sig = Utils::findSig("48 8D ? ? ? ? ? 48 8B 5C 24 30 48 89 06 33 C0 48 89 7E 20 48 89 46 28 48 89 46 30 48 89 46 38 48 89 46 40 48 89 46 48 48 89 46 50 48 89 46 58 48 8B C6 48 8B 74 24 38 48 83 C4 20 5F");
 
 	if(!addr)
             return StatusData(MethodStatus::Error, "[LoopbackPacketSender Hook] Cannot retrieve the LoopbackPacketSender vtable!");
