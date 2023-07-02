@@ -37,12 +37,13 @@ auto SendCallback(LoopbackPacketSender* _this, Packet* packet) -> void {
 auto Hook_LoopbackPacketSender::init(void) -> StatusData {
 
 	lpMgr = this->mgr;
-	auto loopbackPacketSender = Minecraft::getClientInstance()->LoopbackPacketSender;
+	auto sig = Utils::findSig("48 8D ? ? ? ? ? 48 8B 5C 24 30 48 89 06 33 C0 48 89 7E 20 48 89 46 28 48 89 46 30 48 89 46 38 48 89 46 40 48 89 46 48 48 89 46 50 48 89 46 58 48 8B C6 48 8B 74 24 38 48 83 C4 20 5F");
 
-	if(!loopbackPacketSender)
-		return StatusData(MethodStatus::Error, "[LoopbackPacketSender::send Hook] ClientInstance was NULL!");
+	if(!addr)
+            return StatusData(MethodStatus::Error, "[LoopbackPacketSender Hook] Cannot retrieve the LoopbackPacketSender vtable!");
 
-	uintptr_t** VTable = reinterpret_cast<uintptr_t**>(*(uintptr_t*)loopbackPacketSender);
+	int offset = *reinterpret_cast<int*>(sig + 3);
+	uintptr_t** VTable = addr + offset + 7;
 
 	if(MH_CreateHook((void*)VTable[1], &SendCallback, reinterpret_cast<LPVOID*>(&_Send)) != MH_OK)
 		return StatusData(MethodStatus::Error, "[LoopbackPacketSender::send Hook] Failed to create hook!");
