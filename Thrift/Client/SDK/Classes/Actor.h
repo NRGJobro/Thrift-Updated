@@ -52,10 +52,7 @@ public:
 	virtual Vec3<float>* getPos(void);
 	virtual Vec3<float>* getPosOld(void);
 	virtual float getPosExtrapolated(float);
-	virtual float getAttachPos(__int64, float);
 	virtual int getFiringPos(void);
-	virtual void move(Vec3<float> const&);
-	virtual void move(__int64&, Vec3<float> const&);
 	virtual float getInterpolatedRidingPosition(float);
 	virtual float getInterpolatedBodyRot(float);
 	virtual float getInterpolatedHeadRot(float);
@@ -64,8 +61,6 @@ public:
 	virtual float getInterpolatedWalkAnimSpeed(float);
 	virtual float getInterpolatedRidingOffset(float, int);
 	virtual void resetInterpolated(void);
-	virtual void updateEntityInside(AABB const&);
-	virtual void updateEntityInside(void);
 	virtual bool isFireImmune(void);
 	virtual void breaksFallingBlocks(void);
 	virtual void blockedByShield(__int64 const&, Actor&);
@@ -81,7 +76,6 @@ public:
 	virtual void positionPassenger(Actor&, float);
 	virtual void startRiding(Actor&);
 	virtual void addPassenger(Actor&);
-	virtual void flagPassengerToRemove(Actor&);
 	virtual int getExitTip(std::string const&, __int64, __int64);
 	virtual int getEntityLocNameString(void);
 	virtual void intersects(Vec3<float> const&, Vec3<float> const&);
