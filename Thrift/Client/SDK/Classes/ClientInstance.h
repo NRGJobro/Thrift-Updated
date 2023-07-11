@@ -30,7 +30,7 @@ public:
 public:
 	BUILD_ACCESS(class LoopbackPacketSender*, LoopbackPacketSender, 0xF0);//Good as of 1.20
 	BUILD_ACCESS(class MinecraftGame*, MinecraftGame, 0xC8); //Good as of 1.20
-	BUILD_ACCESS(class GuiData*, GuiData, 0x510);//Good as of 1.20
+	BUILD_ACCESS(class GuiData*, GuiData, 0x540);//Good as of 1.20
 public:
 	AS_FIELD(class Player*, LocalPlayer, getLocalPlayer);
 	AS_FIELD(class MoveInputHandler*, getMoveInputHandler, getMoveTurnInput);
