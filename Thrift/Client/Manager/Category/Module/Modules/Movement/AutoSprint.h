@@ -11,8 +11,8 @@ public:
 	auto onTick(void) -> void {
 		auto instance = Minecraft::getClientInstance();
 		auto player = (instance != nullptr ? instance->LocalPlayer : nullptr);
-		auto input = instance->getMoveInputHandler;
 		if (player == nullptr) return;
+		auto input = instance->getMoveInputHandler;
 		if (instance->getMoveInputHandler->isSneakDown) return;
 		
 		if ((input->forwardMovement > 0 || ((input->forwardMovement || input->sideMovement))))
