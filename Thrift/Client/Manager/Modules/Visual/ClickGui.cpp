@@ -5,12 +5,20 @@
 #include "../../../Utils/Render/ImGuiUtils.h"
 #include "../../../Utils/Render/RenderUtils.h"
 #include "../../Hooks/SwapChain/ImGui/imgui_internal.h"
+#include "../../Hooks/SwapChain/ImGui/Animations/dotMatrix.h"
 
 bool colorPickerOpen = false;
-ImVec4 guiBackgroundColor = ImVec4(0.0f, 0.0f, 0.0f, 0.85f);
-
+ImVec4 guiBackgroundColor = ImVec4(0.0f, 0.0f, 0.0f, 0.70f);
+std::vector<Particle> dots;
 
 /*  dumbed down ghetto clickgui from epic uwu */
+
+static ImVec2 getScreenResolution() {
+    RECT desktop;
+    const HWND hDesktop = GetDesktopWindow();
+    GetWindowRect(hDesktop, &desktop);
+    return ImVec2(desktop.right, desktop.bottom);
+}
 
 void ClickGui::onEnable() {
     auto instance = Minecraft::getClientInstance();
@@ -19,6 +27,8 @@ void ClickGui::onEnable() {
     }
 }
 
+bool madeMatrix = false;
+
 void ClickGui::onImGuiRender() {
     ImGuiStyle& style = ImGui::GetStyle();
     style.WindowRounding = 10.0f;
@@ -26,8 +36,12 @@ void ClickGui::onImGuiRender() {
     ImVec2 displaySize = ImGui::GetIO().DisplaySize;
     ImDrawList* drawList = ImGui::GetBackgroundDrawList();
     drawList->AddRectFilled(ImVec2(0, 0), displaySize, ImColor(0.f, 0.f, 0.f, 0.30f));
-
-    style.Colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.85f);
+    if (!madeMatrix) {
+		madeMatrix = true;
+        dots = createDotMatrix({ getScreenResolution().x,getScreenResolution().y }, { 40,40 }, getScreenResolution().x * getScreenResolution().y / 7500);
+    }
+    updateDotMatrix({ getScreenResolution().x,getScreenResolution().y }, dots);
+    drawDotMatrix(dots, 50, 0.05, true);
 
     style.Colors[ImGuiCol_WindowBg] = guiBackgroundColor;
     style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -61,17 +75,21 @@ void ClickGui::onImGuiRender() {
         ImGui::SetNextWindowSize(ImVec2(categoryWindowWidth, categoryWindowHeight));
         ImGui::SetNextWindowPos(ImVec2(xPos, 115.0f), ImGuiCond_FirstUseEver);
         ImGui::Begin(category->name.c_str(), nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
-        ImGui::SetWindowFontScale(1.2f);
+        ImGui::SetWindowFontScale(1.3f);
+        ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5.0f);
         float textWidth = ImGui::CalcTextSize(category->name.c_str()).x;
         float windowWidth = ImGui::GetWindowSize().x;
+        ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
         ImGui::Text(category->name.c_str());
         ImGui::SetWindowFontScale(1.1f);
+        ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5.0f);
+
 
         for (Module* module : category->modules) {
             bool isEnabled = module->isEnabled;
-            ImVec4 buttonColor = isEnabled ? ImVec4(0.3f, 0.3f, 0.3f, 0.85f) : ImVec4(0.0f, 0.0f, 0.0f, 0.85f);
-            ImVec4 hoverColor = isEnabled ? ImVec4(0.25f, 0.25f, 0.25f, 0.85f) : ImVec4(0.1f, 0.1f, 0.1f, 0.85f);
-            ImVec4 activeColor = isEnabled ? ImVec4(0.2f, 0.2f, 0.2f, 0.85f) : ImVec4(0.1f, 0.1f, 0.1f, 0.85f);
+            ImVec4 buttonColor = isEnabled ? ImVec4(0.3f, 0.3f, 0.3f, 0.70f) : ImVec4(0.0f, 0.0f, 0.0f, 0.70f);
+            ImVec4 hoverColor = isEnabled ? ImVec4(0.25f, 0.25f, 0.25f, 0.70f) : ImVec4(0.1f, 0.1f, 0.1f, 0.70f);
+            ImVec4 activeColor = isEnabled ? ImVec4(0.2f, 0.2f, 0.2f, 0.70f) : ImVec4(0.1f, 0.1f, 0.1f, 0.70f);
 
 
             ImGui::PushStyleColor(ImGuiCol_Button, buttonColor);
@@ -96,13 +114,14 @@ void ClickGui::onImGuiRender() {
         ImGui::Begin("Pick a Color", &colorPickerOpen, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
         float textWidth = ImGui::CalcTextSize("Pick a Color").x;
         float windowWidth = ImGui::GetWindowSize().x;
+        ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
         ImGui::SetWindowFontScale(1.2f);
         ImGui::Text("Pick a Color");
         ImGui::SetWindowFontScale(1.f);
 
         style.WindowPadding = ImVec2(20, 20);  
 
-        static ImVec4 pickedColor = ImVec4(1.0f, 1.0f, 1.0f, 0.85f);
+        static ImVec4 pickedColor = ImVec4(1.0f, 1.0f, 1.0f, 0.70f);
         bool colorChanged = ImGui::ColorPicker3("##ColorPicker", (float*)&pickedColor);
 
         static float rainbowSpeed = 0.1f;
@@ -117,13 +136,17 @@ void ClickGui::onImGuiRender() {
         if (rainbowHue > 1.0f)
             rainbowHue -= 1.0f;
 
-        ImVec4 rainbowColor = ImColor::HSV(rainbowHue, 0.7f, 0.7f, 0.85f);
+        ImVec4 rainbowColor = ImColor::HSV(rainbowHue, 0.7f, 0.7f, 0.70f);
 
         ImVec4 targetColor = useRainbowColors ? rainbowColor : (colorChanged ? pickedColor : guiBackgroundColor);
 
   
         guiBackgroundColor = targetColor;
         style.Colors[ImGuiCol_WindowBg] = guiBackgroundColor;
+        style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
+        style.Colors[ImGuiCol_FrameBg] = guiBackgroundColor;
+        style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(guiBackgroundColor.x + 0.1f, guiBackgroundColor.y + 0.1f, guiBackgroundColor.z + 0.1f, guiBackgroundColor.w);
+        style.Colors[ImGuiCol_FrameBgActive] = ImVec4(guiBackgroundColor.x + 0.05f, guiBackgroundColor.y + 0.05f, guiBackgroundColor.z + 0.05f, guiBackgroundColor.w);
 
         ImGui::End();
         return;
