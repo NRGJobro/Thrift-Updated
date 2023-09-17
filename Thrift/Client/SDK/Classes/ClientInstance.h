@@ -9,15 +9,29 @@
 #include "GuiData.h"
 #include "Actor.h"
 
+#define disableInputIndex 305
+#define getLocalPlayerIndex 27
+
 class ClientInstance {
 private:
 	uintptr_t** VTable;
 public:
-	auto getLocalPlayer(void) -> class Player* {
-		using GetLocalPlayer = Player * (__thiscall*)(ClientInstance*);
-		GetLocalPlayer _GetLocalPlayer = (GetLocalPlayer)(this->VTable[27]);
-		return _GetLocalPlayer(this);
-	};
+
+	auto getLocalPlayer() -> class Player* {
+		return (class Player*)Utils::CallVFunc<getLocalPlayerIndex, Player*>(this);
+	}
+
+	auto setDisableInput(bool disable) -> void {
+		Utils::CallVFunc<disableInputIndex, __int64>(this, disable);
+	}
+
+	auto releaseMouse() -> void {
+		Utils::CallVFunc<disableInputIndex + 1, __int64>(this);
+	}
+
+	auto grabMouse() -> void {
+		Utils::CallVFunc<disableInputIndex + 2, __int64>(this);
+	}
 
 	auto getMoveTurnInput() -> class MoveInputHandler* {
 		auto* player = this->getLocalPlayer();

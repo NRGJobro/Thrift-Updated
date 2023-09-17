@@ -23,7 +23,7 @@ auto KeyHookCallback(uint64_t key, bool isDown) -> void {
 
 			for (auto mod : category->modules) {
 
-				if (isDown && mcgame != nullptr && mcgame->canUseKeys)
+				if (isDown && mcgame != nullptr && (mod->name == "ClickGui" || mcgame->canUseKeys))
 					if (mod->key == key)
 						mod->isEnabled = !mod->isEnabled;
 

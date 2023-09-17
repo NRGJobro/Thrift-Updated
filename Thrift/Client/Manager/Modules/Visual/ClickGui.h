@@ -5,8 +5,10 @@
 class ClickGui : public Module {
 public:
     ClickGui(Category* c) : Module(c, "ClickGui", "For testing shiz") {
-        this->key = 'K';
+        this->key = VK_INSERT;
     };
 
     auto onImGuiRender() -> void override;
+    auto onDisable() -> void override;
+    auto onEnable() -> void override;
 };

@@ -102,9 +102,18 @@ public:
 	static auto ColorConvertHSVtoRGB(float, float, float, float&, float&, float&) -> void;
 	static auto ApplyRainbow(float*, float) -> void;
 	static Color getGoodRainbow(float, float, float, long);
-	template <unsigned int IIdx, typename TRet, typename... TArgs>
-	static auto CallVFunc(void* thisptr, TArgs... argList) -> TRet {
-		using Fn = TRet(__thiscall*)(void*, decltype(argList)...);
-		return (*static_cast<Fn**>(thisptr))[IIdx](thisptr, argList...);
+
+	/// <summary>
+	/// Calls classes virtual table function by index. Requires the return type and arguments.
+	/// </summary>
+	/// <typeparam name="returnType">The function's return value</typeparam>
+	/// <typeparam name="...args">The function's arguments</typeparam>
+	/// <param name="ptr">The class pointer which will get its virtual table called</param>
+	/// <param name="...argList">The arguments passed through into the virtual table function</param>
+	/// <returns></returns>
+	template <unsigned int index, typename returnType, typename... args>
+	static inline auto CallVFunc(void* ptr, args... argList) -> returnType {
+		using function = returnType(__thiscall*)(void*, decltype(argList)...);
+		return (*static_cast<function**>(ptr))[index](ptr, argList...);
 	}
 };

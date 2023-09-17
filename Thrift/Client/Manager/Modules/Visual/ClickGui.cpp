@@ -12,13 +12,20 @@ ImVec4 guiBackgroundColor = ImVec4(0.0f, 0.0f, 0.0f, 0.85f);
 
 /*  dumbed down ghetto clickgui from epic uwu */
 
+void ClickGui::onEnable() {
+    auto instance = Minecraft::getClientInstance();
+    if (instance->getMinecraftGame()->canUseKeys) {
+        instance->grabMouse();
+    }
+}
 
 void ClickGui::onImGuiRender() {
     ImGuiStyle& style = ImGui::GetStyle();
-    style.WindowRounding = 18.0f;
+    style.WindowRounding = 10.0f;
 
     ImVec2 displaySize = ImGui::GetIO().DisplaySize;
     ImDrawList* drawList = ImGui::GetBackgroundDrawList();
+    drawList->AddRectFilled(ImVec2(0, 0), displaySize, ImColor(0.f, 0.f, 0.f, 0.30f));
 
     style.Colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.85f);
 
@@ -32,7 +39,7 @@ void ClickGui::onImGuiRender() {
     style.WindowPadding = ImVec2(10, 10);
 
     ImGui::SetNextWindowSize(ImVec2(200, 50));
-    ImGui::Begin("Color", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
+    ImGui::Begin("Color", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
 
     if (ImGui::Button("Pick Color", ImVec2(-1, 30))) {
         colorPickerOpen = true;
@@ -52,7 +59,7 @@ void ClickGui::onImGuiRender() {
 
      
         if (i == 0) {
-            xPos += 40.0f; 
+            xPos += displaySize.x / (i + 1);
         }
 
         /*   CATEGORY SHIT   */
@@ -112,12 +119,12 @@ void ClickGui::onImGuiRender() {
 
     /*   COLORPICKER SHIT   */
     if (colorPickerOpen) {
-        ImGui::Begin("Pick a Color", &colorPickerOpen, ImGuiWindowFlags_NoCollapse);
+        ImGui::Begin("Pick a Color", &colorPickerOpen, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 
         ImGuiStyle& style = ImGui::GetStyle();
         style.WindowPadding = ImVec2(20, 20);  
 
-        static ImVec4 pickedColor = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
+        static ImVec4 pickedColor = ImVec4(1.0f, 1.0f, 1.0f, 0.85f);
         bool colorChanged = ImGui::ColorPicker3("##ColorPicker", (float*)&pickedColor);
 
         static float rainbowSpeed = 0.1f;
@@ -132,7 +139,7 @@ void ClickGui::onImGuiRender() {
         if (rainbowHue > 1.0f)
             rainbowHue -= 1.0f;
 
-        ImVec4 rainbowColor = ImColor::HSV(rainbowHue, 0.7f, 0.7f); 
+        ImVec4 rainbowColor = ImColor::HSV(rainbowHue, 0.7f, 0.7f, 0.85f);
 
         ImVec4 targetColor = useRainbowColors ? rainbowColor : (colorChanged ? pickedColor : guiBackgroundColor);
 
@@ -160,4 +167,7 @@ void ClickGui::onImGuiRender() {
 
 }
 
-
+void ClickGui::onDisable() {
+    auto instance = Minecraft::getClientInstance();
+    instance->releaseMouse();
+}

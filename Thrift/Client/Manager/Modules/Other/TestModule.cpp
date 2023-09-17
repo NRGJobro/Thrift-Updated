@@ -32,7 +32,7 @@ auto TestModule::onRender(MinecraftUIRenderContext* ctx) -> void {
 auto TestModule::onImGuiRender() -> void {
 
     /* Execute Every MinecraftUIRenderContext Tick */
-
+    /*
     ImGuiStyle* style = &ImGui::GetStyle();
 
     style->WindowPadding = ImVec2(15, 15);
@@ -112,7 +112,7 @@ auto TestModule::onImGuiRender() -> void {
             ImGui::Spacing();
         }
     }
-    ImGui::End();
+    ImGui::End();*/
     ImFont* font = ImGui::GetFont();
 
     ImGuiUtils::drawText(font, Vec2<float>(100,100), "Balls lmfao", Color(0.f, 0.f, 255.f, 1.f), 1.f, true);
