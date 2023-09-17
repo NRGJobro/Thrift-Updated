@@ -50,39 +50,22 @@ void ClickGui::onImGuiRender() {
     float categoryWindowWidth = 200.0f; 
     float categoryWindowHeight = 500.0f;
     float horizontalSpacing = 60.0f;     
+    float xPos = displaySize.x;
 
     for (size_t i = 0; i < this->category->mgr->categories.size(); i++) {
         Category* category = this->category->mgr->categories[i];
-
-       
-        float xPos = i * (categoryWindowWidth + horizontalSpacing);
-
-     
-        if (i == 0) {
-            xPos += displaySize.x / (i + 1);
-        }
+        xPos = displaySize.x / (this->category->mgr->categories.size() + 1) * (i + 1);
 
         /*   CATEGORY SHIT   */
       
         ImGui::SetNextWindowSize(ImVec2(categoryWindowWidth, categoryWindowHeight));
         ImGui::SetNextWindowPos(ImVec2(xPos, 115.0f), ImGuiCond_FirstUseEver);
         ImGui::Begin(category->name.c_str(), nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
-
-
-
         ImGui::SetWindowFontScale(1.2f);
-        ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 10.0f);
-
-
         float textWidth = ImGui::CalcTextSize(category->name.c_str()).x;
         float windowWidth = ImGui::GetWindowSize().x;
-        ImGui::SetCursorPosX((windowWidth - textWidth) * 0.5f);
         ImGui::Text(category->name.c_str());
-
-
         ImGui::SetWindowFontScale(1.1f);
-        ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5.0f);
-
 
         for (Module* module : category->modules) {
             bool isEnabled = module->isEnabled;
@@ -99,19 +82,10 @@ void ClickGui::onImGuiRender() {
 
             if (ImGui::Button(module->name.c_str(), ImVec2(-1, 30))) {
                 module->isEnabled = !module->isEnabled;
-                if (module->isEnabled) {
-                    module->onEnable();
-                }
-                else {
-                    module->onDisable();
-                }
+                if (module->isEnabled) module->onEnable(); else module->onDisable();
             }
-
-
             ImGui::PopStyleColor(3);
         }
-
-
         ImGui::End();
     }
 
@@ -119,9 +93,13 @@ void ClickGui::onImGuiRender() {
 
     /*   COLORPICKER SHIT   */
     if (colorPickerOpen) {
-        ImGui::Begin("Pick a Color", &colorPickerOpen, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+        ImGui::Begin("Pick a Color", &colorPickerOpen, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
+        float textWidth = ImGui::CalcTextSize("Pick a Color").x;
+        float windowWidth = ImGui::GetWindowSize().x;
+        ImGui::SetWindowFontScale(1.2f);
+        ImGui::Text("Pick a Color");
+        ImGui::SetWindowFontScale(1.f);
 
-        ImGuiStyle& style = ImGui::GetStyle();
         style.WindowPadding = ImVec2(20, 20);  
 
         static ImVec4 pickedColor = ImVec4(1.0f, 1.0f, 1.0f, 0.85f);
@@ -148,23 +126,18 @@ void ClickGui::onImGuiRender() {
         style.Colors[ImGuiCol_WindowBg] = guiBackgroundColor;
 
         ImGui::End();
+        return;
     }
-    else {
  
-        ImGuiStyle& style = ImGui::GetStyle();
-        style.WindowPadding = ImVec2(10, 10);
+    style.WindowPadding = ImVec2(10, 10);
 
-    
-        style.Colors[ImGuiCol_WindowBg] = guiBackgroundColor;
-        style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
-        style.Colors[ImGuiCol_Button] = guiBackgroundColor;
-        style.Colors[ImGuiCol_ButtonHovered] = ImVec4(guiBackgroundColor.x + 0.1f, guiBackgroundColor.y + 0.1f, guiBackgroundColor.z + 0.1f, guiBackgroundColor.w);
-        style.Colors[ImGuiCol_ButtonActive] = ImVec4(guiBackgroundColor.x + 0.05f, guiBackgroundColor.y + 0.05f, guiBackgroundColor.z + 0.05f, guiBackgroundColor.w);
+    style.Colors[ImGuiCol_WindowBg] = guiBackgroundColor;
+    style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
+    style.Colors[ImGuiCol_Button] = guiBackgroundColor;
+    style.Colors[ImGuiCol_ButtonHovered] = ImVec4(guiBackgroundColor.x + 0.1f, guiBackgroundColor.y + 0.1f, guiBackgroundColor.z + 0.1f, guiBackgroundColor.w);
+    style.Colors[ImGuiCol_ButtonActive] = ImVec4(guiBackgroundColor.x + 0.05f, guiBackgroundColor.y + 0.05f, guiBackgroundColor.z + 0.05f, guiBackgroundColor.w);
 
-        ImGui::End();
-
-    }
-
+    ImGui::End();
 }
 
 void ClickGui::onDisable() {
