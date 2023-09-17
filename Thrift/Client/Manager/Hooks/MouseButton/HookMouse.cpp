@@ -1,7 +1,7 @@
 #include "HookMouse.h"
 
-#include "../../../Category/Module/Module.h"
-#include "../../../Manager.h"
+#include "../../Module.h"
+#include "../../Manager.h"
 #include "../SwapChain/ImGui/imgui.h"
 
 Manager* mouseMgr = nullptr;

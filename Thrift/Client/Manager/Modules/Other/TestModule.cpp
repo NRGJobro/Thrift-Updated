@@ -1,8 +1,8 @@
 #include "TestModule.h"
-#include "../../../../Manager.h"
-#include "../../../../../Client.h"
-#include "../../../../Hook/Hooks/SwapChain/ImGui/imgui.h"
-#include "../../../../../Utils/Render/ImGuiUtils.h"
+#include "../../Manager.h"
+#include "../../Client.h"
+#include "../../Hooks/SwapChain/ImGui/imgui.h"
+#include "../../../Utils/Render/ImGuiUtils.h"
 
 auto TestModule::onTick(void) -> void {
 

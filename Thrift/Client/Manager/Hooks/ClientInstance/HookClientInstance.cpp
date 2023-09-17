@@ -1,9 +1,8 @@
 #include "HookClientInstance.h"
 
-#include "../../../Category/Module/Module.h"
-
-#include "../../../Manager.h"
-#include "../../../../Client.h"
+#include "../../Module.h"
+#include "../../Manager.h"
+#include "../../Client.h"
 
 typedef void (__thiscall* RenderContext)(void*, MinecraftUIRenderContext*);
 RenderContext _RenderContext;

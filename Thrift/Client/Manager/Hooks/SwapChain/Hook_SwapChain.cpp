@@ -1,14 +1,15 @@
 #include "HookSwapChain.h"
 
-#include "../../../Category/Module/Module.h"
+#include "../../Module.h"
 
-#include "../../../Manager.h"
-#include "../../../../Client.h"
+#include "../../Manager.h"
+#include "../../Client.h"
 #include "ImGui/imgui.h"
-#include "ImGui/Font/Mojangles.hpp"
 #include "ImGui/imgui_impl_dx11.h"
 #include "ImGui/imgui_impl_win32.h"
 #include "ImGui/imgui_impl_dx12.h"
+#include "HookSwapChain.h"
+#include "ImGui/Font/coolfont.hpp"
 
 Manager* scMgr = nullptr;
 bool initContext = false;
@@ -70,7 +71,7 @@ auto hookPresentD3D12(IDXGISwapChain3* ppSwapChain, UINT syncInterval, UINT flag
 
             ImGui::CreateContext();
             auto& io = ImGui::GetIO();
-            io.Fonts->AddFontFromMemoryCompressedTTF(mojangles_compressed_data, mojangles_compressed_size, 22);  // Mojangles font
+            io.Fonts->AddFontFromMemoryCompressedTTF(mojangles_compressed_data, mojangles_compressed_size, 22);  // cool font, not mojangles tho
             io.Fonts->Build();
             initContext = true;
 
