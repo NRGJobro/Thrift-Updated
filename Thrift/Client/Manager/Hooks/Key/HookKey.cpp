@@ -1,7 +1,7 @@
 #include "HookKey.h"
 
-#include "../../../Category/Module/Module.h"
-#include "../../../Manager.h"
+#include "../../Module.h"
+#include "../../Manager.h"
 
 Manager* kMgr = nullptr;
 

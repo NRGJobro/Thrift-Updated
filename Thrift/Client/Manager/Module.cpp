@@ -1,5 +1,5 @@
 #include "Module.h"
-#include "../Category.h"
+#include "Category.h"
 
 Module::Module(Category* c, std::string n, std::string d) {
 

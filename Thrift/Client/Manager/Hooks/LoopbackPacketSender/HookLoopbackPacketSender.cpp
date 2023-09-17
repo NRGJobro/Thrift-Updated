@@ -1,9 +1,9 @@
 #include "HookLoopbackPacketSender.h"
 
-#include "../../../Category/Module/Module.h"
+#include "../../Module.h"
 
-#include "../../../Manager.h"
-#include "../../../../Client.h"
+#include "../../Manager.h"
+#include "../../Client.h"
 
 Manager* lpMgr = nullptr;
 

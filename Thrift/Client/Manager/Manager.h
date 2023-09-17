@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Utils/Utils.h"
-#include "Category/Category.h"
+#include "Category.h"
 
 class Client;
 class Hook;

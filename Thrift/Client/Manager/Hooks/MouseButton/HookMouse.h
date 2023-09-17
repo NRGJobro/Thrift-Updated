@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Hook.h"
+#include "../Hook.h"
 
 class Hook_Mouse : public Hook {
 public:

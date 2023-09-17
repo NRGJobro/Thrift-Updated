@@ -1,7 +1,7 @@
 #include "TabGui.h"
-#include "../../../../Manager.h"
-#include "../../../../../Client.h"
-#include "../../../../../Utils/Render/RenderUtils.h"
+#include "../../Manager.h"
+#include "../../Client.h"
+#include "../../../Utils/Render/RenderUtils.h"
 
 auto TabGui::onRender(MinecraftUIRenderContext* ctx) -> void {
 

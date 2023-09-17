@@ -1,5 +1,5 @@
 #include "Manager.h"
-#include "../Client.h"
+#include "Client.h"
 
 Manager::Manager(Client* c) {
 
@@ -46,11 +46,11 @@ Manager::Manager(Client* c) {
 };
 
 //Hook Includes
-#include "Hook/Hooks/LoopbackPacketSender/HookLoopbackPacketSender.h"
-#include "Hook/Hooks/ClientInstance/HookClientInstance.h"
-#include "Hook/Hooks/SwapChain/HookSwapChain.h"
-#include "Hook/Hooks/MouseButton/HookMouse.h"
-#include "Hook/Hooks/Key/HookKey.h"
+#include "Hooks/LoopbackPacketSender/HookLoopbackPacketSender.h"
+#include "Hooks/ClientInstance/HookClientInstance.h"
+#include "Hooks/SwapChain/HookSwapChain.h"
+#include "Hooks/MouseButton/HookMouse.h"
+#include "Hooks/Key/HookKey.h"
 
 auto Manager::initHooks(void) -> StatusData {
 
@@ -77,47 +77,52 @@ auto Manager::initHooks(void) -> StatusData {
 //Include Modules
 
 /*Movement*/
-#include "Category/Module/Modules/Movement/AirJump.h"
-#include "Category/Module/Modules/Movement/AutoSprint.h"
-#include "Category/Module/Modules/Movement/AutoJump.h"
+#include "Modules/Movement/AirJump.h"
+#include "Modules/Movement/AutoSprint.h"
+#include "Modules/Movement/AutoJump.h"
 
 /*Player*/
-#include "Category/Module/Modules/Player/Jesus.h"
+#include "Modules/Player/Jesus.h"
 
 /*Visuals*/
-#include "Category/Module/Modules/Visual/TabGui.h"
-#include "Category/Module/Modules/Visual/RainbowText.h"
+#include "Modules/Visual/TabGui.h"
+#include "Modules/Visual/RainbowText.h"
+#include "Modules/Visual/ClickGui.h"
 
 /*Misc*/
-#include "Category/Module/Modules/Other/TestModule.h"
-
+#include "Modules/Other/TestModule.h"
 auto Manager::initCategories(void) -> void {
-	
 	/* Combat */
 	auto combat = new Category(this, "Combat");
+	combat->index = 0;
 
 	/* Movement */
 	auto move = new Category(this, "Move");
+	move->index = 1;
 	new AirJump(move);
 	new AutoSprint(move);
 	new AutoJump(move);
 
 	/* Player */
 	auto player = new Category(this, "Player");
+	player->index = 2;
 	new Jesus(player);
 
 	/* Visuals */
 	auto visuals = new Category(this, "Visuals");
+	visuals->index = 3;
 	new TabGui(visuals);
 	new RainbowText(visuals);
+	new ClickGui(visuals);
 
 	/* World */
 	auto world = new Category(this, "World");
+	world->index = 4;
 
 	/* Other */
 	auto other = new Category(this, "Misc");
+	other->index = 5;
 	new TestModule(other);
-
 };
 
 auto Manager::uninjectDLL(void) -> void {

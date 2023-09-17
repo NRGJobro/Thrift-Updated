@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../../Utils/Utils.h"
-#include "../../../SDK/Minecraft.h"
+#include <string>
+#include "../SDK/Classes/MinecraftUIRenderContext.h"
 
 class Category;
 
