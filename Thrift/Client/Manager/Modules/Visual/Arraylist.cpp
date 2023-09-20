@@ -13,6 +13,7 @@ auto Arraylist::onEnable() -> void {
         std::sort(moduless2.begin(), moduless2.end(), [](const Module* a, const Module* b) {
             return a->name.size() > b->name.size();
             });
+        moduless2.erase(std::unique(moduless2.begin(), moduless2.end()), moduless2.end());
 }
 
 auto Arraylist::onRender(MinecraftUIRenderContext* ctx) -> void {

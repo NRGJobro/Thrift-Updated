@@ -6,7 +6,7 @@ class Arraylist : public Module {
 public:
 	Arraylist(Category* c) : Module(c, "Arraylist", "See all enabled module") {
 
-		this->isEnabled = false;
+		this->isEnabled = true;
 
 	};
 public:
