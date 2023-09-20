@@ -214,6 +214,7 @@
     <ClCompile Include="Client\Manager\Hooks\SwapChain\ImGui\Animations\dotMatrix.cpp" />
     <ClCompile Include="Client\Manager\Module.cpp" />
     <ClCompile Include="Client\Manager\Modules\Other\TestModule.cpp" />
+    <ClCompile Include="Client\Manager\Modules\Visual\Arraylist.cpp" />
     <ClCompile Include="Client\Manager\Modules\Visual\TabGui.cpp" />
     <ClCompile Include="Client\Manager\Modules\Visual\ClickGui.cpp" />
     <ClCompile Include="Client\Manager\Hooks\Hook.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="Client\Manager\Client.h" />
     <ClInclude Include="Client\Manager\Hooks\SwapChain\ImGui\Animations\dotMatrix.h" />
     <ClInclude Include="Client\Manager\Module.h" />
+    <ClInclude Include="Client\Manager\Modules\Visual\Arraylist.h" />
     <ClInclude Include="Client\Manager\Movement\AirJump.h" />
     <ClInclude Include="Client\Manager\Movement\AutoJump.h" />
     <ClInclude Include="Client\Manager\Movement\AutoSprint.h" />
