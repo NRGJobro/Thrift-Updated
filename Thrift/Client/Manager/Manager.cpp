@@ -88,6 +88,7 @@ auto Manager::initHooks(void) -> StatusData {
 #include "Modules/Visual/TabGui.h"
 #include "Modules/Visual/RainbowText.h"
 #include "Modules/Visual/ClickGui.h"
+#include "Modules/Visual/Arraylist.h"
 
 /*Misc*/
 #include "Modules/Other/TestModule.h"
@@ -114,6 +115,7 @@ auto Manager::initCategories(void) -> void {
 	new TabGui(visuals);
 	new RainbowText(visuals);
 	new ClickGui(visuals);
+	new Arraylist(visuals);
 
 	/* World */
 	auto world = new Category(this, "World");

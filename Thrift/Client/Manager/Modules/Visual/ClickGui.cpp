@@ -103,6 +103,10 @@ void ClickGui::onImGuiRender() {
                 if (module->isEnabled) module->onEnable(); else module->onDisable();
             }
             ImGui::PopStyleColor(3);
+
+            if (ImGui::IsItemHovered(ImGuiHoveredFlags_DelayNormal)) {
+                ImGui::SetTooltip(module->description.c_str());
+            }
         }
         ImGui::End();
     }
