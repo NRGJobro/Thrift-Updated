@@ -4,6 +4,9 @@
 #include "../../../Utils/Render/ImGuiUtils.h"
 
 auto Arraylist::onEnable() -> void {
+
+    //something go wrong when enable this in clickgui, I will try to find a way
+
     auto mgr = this->category->mgr;
         for (auto cata : mgr ->categories)
             for (auto module : cata->modules)
