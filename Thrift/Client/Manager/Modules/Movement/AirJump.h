@@ -12,7 +12,8 @@ public:
 		auto instance = Minecraft::getClientInstance();
 		auto player = (instance != nullptr ? instance->LocalPlayer : nullptr);
 
-		if (player != nullptr)
-			player->getMovementProxy()->setOnGround(true);
+		// Movement Proxy was removed in 1.20.31
+		//if (player != nullptr)
+			//player->getMovementProxy()->setOnGround(true);
 	};
 };

@@ -15,7 +15,8 @@ public:
 		auto input = instance->getMoveInputHandler;
 		if (instance->getMoveInputHandler->isSneakDown) return;
 		
-		if ((input->forwardMovement > 0 || ((input->forwardMovement || input->sideMovement))))
-			player->getMovementProxy()->setSprinting(true);
+		// Movement Proxy was removed in 1.20.31
+		//if ((input->forwardMovement > 0 || ((input->forwardMovement || input->sideMovement))))
+			//player->getMovementProxy()->setSprinting(true);
 	};
 };
