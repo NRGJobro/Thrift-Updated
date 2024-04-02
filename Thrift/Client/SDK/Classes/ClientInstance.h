@@ -9,8 +9,7 @@
 #include "GuiData.h"
 #include "Actor.h"
 
-#define disableInputIndex 305
-#define getLocalPlayerIndex 27
+#define getLocalPlayerIndex 28 // Good as of 1.20.51
 
 class ClientInstance {
 private:
@@ -22,15 +21,15 @@ public:
 	}
 
 	auto setDisableInput(bool disable) -> void {
-		Utils::CallVFunc<disableInputIndex, __int64>(this, disable);
+		Utils::CallVFunc<325, __int64>(this, disable); // Good as of 1.20.51
 	}
 
 	auto releaseMouse() -> void {
-		Utils::CallVFunc<disableInputIndex + 1, __int64>(this);
+		Utils::CallVFunc<326, __int64>(this); // Good as of 1.20.51
 	}
 
 	auto grabMouse() -> void {
-		Utils::CallVFunc<disableInputIndex + 2, __int64>(this);
+		Utils::CallVFunc<327, __int64>(this); // Good as of 1.20.51
 	}
 
 	auto getMoveTurnInput() -> class MoveInputHandler* {
@@ -42,10 +41,10 @@ public:
 		return MoveInputComponent_try_getFunc(registryBase, &entityId);
 	}
 public:
-	BUILD_ACCESS(class LoopbackPacketSender*, LoopbackPacketSender, 0xF0);//Good as of 1.20
-	BUILD_ACCESS(class MinecraftGame*, MinecraftGame, 0xC8); //Good as of 1.20
-	BUILD_ACCESS(class GuiData*, GuiData, 0x540);//Good as of 1.20
+	BUILD_ACCESS(class LoopbackPacketSender*, LoopbackPacketSender, 0xF0); // Good as of 1.20.51
+	BUILD_ACCESS(class MinecraftGame*, MinecraftGame, 0xC8); // Good as of 1.20.51
+	BUILD_ACCESS(class GuiData*, GuiData, 0x560); // Good as of 1.20.51
 public:
-	AS_FIELD(class Player*, LocalPlayer, getLocalPlayer);
+	AS_FIELD(class Player*, LocalPlayer, getLocalPlayer); // Good as of 1.20.51
 	AS_FIELD(class MoveInputHandler*, getMoveInputHandler, getMoveTurnInput);
 };

@@ -37,7 +37,7 @@ __int64 getMouseCallback(__int64 a1, char mouseButton, char isDown, __int16 mous
 auto Hook_Mouse::init(void) -> StatusData {
 
 	mouseMgr = this->mgr;
-	auto sig = Utils::findSig("48 8b c4 48 89 58 ? 48 89 68 ? 48 89 70 ? 57 41 54 41 55 41 56 41 57 48 83 ec ? 44 0f b7 bc 24");
+	auto sig = Utils::findSig("48 8b c4 48 89 58 ? 48 89 68 ? 48 89 70 ? 57 41 54 41 55 41 56 41 57 48 83 ec ? 44 0f b7 bc 24"); // Good as of 1.20.51
 
 	if (!sig)
 		return StatusData(MethodStatus::Error, "[Mouse Hook] Failed to find Signature!");

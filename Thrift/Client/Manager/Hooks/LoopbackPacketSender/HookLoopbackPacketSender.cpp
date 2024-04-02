@@ -36,7 +36,7 @@ auto SendCallback(LoopbackPacketSender* _this, Packet* packet) -> void {
 
 auto Hook_LoopbackPacketSender::init(void) -> StatusData {
 	lpMgr = this->mgr;
-	static auto sig = Utils::findSig("48 8d 05 ? ? ? ? 48 8b 5c 24 ? 48 89 06 33 c0");
+	static auto sig = Utils::findSig("48 8d 05 ? ? ? ? 48 8b 5c 24 ? 48 89 06 33 c0"); // Good as of 1.20.51
 
 	if (!sig) return StatusData(MethodStatus::Error, "[LoopbackPacketSender::send Hook] Failed to find Signature!");
 	auto offset = *(int*)(sig + 3);

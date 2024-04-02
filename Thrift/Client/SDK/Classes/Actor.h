@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../Utils/Utils.h"
-#include "DirectPlayerMovementProxy.h"
 #include "../Components/AABBShapeComponent.h"
 #include "../Components/RenderPositionComponent.h"
 
@@ -94,13 +93,6 @@ public:
 	virtual int getScoreTag(void);
 	virtual bool isInWater(void);
 public:
-    DirectPlayerMovementProxy* getMovementProxy() {
-        using MovementProxyFunction = void(__fastcall*)(Actor*, std::shared_ptr<void>*);
-        static MovementProxyFunction originalFunction = (MovementProxyFunction)Utils::findSig("40 53 48 83 ec ? 48 8b da 48 8b d1 48 89 5c 24 ? 48 8b 41");
-        std::shared_ptr<void> movementProxyPointer;
-        originalFunction(this, &movementProxyPointer);
-        return (DirectPlayerMovementProxy*)movementProxyPointer.get();
-    }
 	RenderPositionComponent* getRenderPositionComponent() {
 		using getRenderPositionComponent = RenderPositionComponent * (__cdecl*)(void*, EntityId*);
 		static auto func = reinterpret_cast<getRenderPositionComponent>(Utils::findSig("40 53 48 83 EC ? 48 8B DA BA 6E F3 E8 D4"));
@@ -108,14 +100,8 @@ public:
 		auto id = this->entityContext.id;
 		return func(registryBase, &id);
 	}
-	AABBShapeComponent* getAABBShapeComponent() {
-		using getAABBShapeComponent = AABBShapeComponent * (__cdecl*)(void*, EntityId*);
-		static auto func = reinterpret_cast<getAABBShapeComponent>(Utils::findSig("40 53 48 83 EC ? 48 8B DA BA F2 C9 10 1B"));
-		auto registryBase = *reinterpret_cast<void**>(this->entityContext.registry);
-		auto id = this->entityContext.id;
-		return func(registryBase, &id);
-	}
 public:
-    BUILD_ACCESS(struct EntityContext, entityContext, 0x8);
+    BUILD_ACCESS(struct EntityContext, entityContext, 0x8); // Good as of 1.20.51
 	BUILD_ACCESS(class EntityLocation*, location, 0x2A0);
+	BUILD_ACCESS(struct AABBShapeComponent*, AABBShapeComponent, 0x2D0); // Good as of 1.20.51
 };
