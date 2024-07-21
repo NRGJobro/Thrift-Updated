@@ -80,7 +80,7 @@ auto RenderContextCallback(void* a1, MinecraftUIRenderContext* ctx) -> void {
 auto Hook_ClientInstance::init(void) -> StatusData {
 
 	rndrMgr = this->mgr;
-	auto sig = Utils::findSig("48 8B C4 48 89 58 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70 ? 0F 29 78 ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B ? 48 89 54 24 ? 4C");
+	auto sig = Utils::findSig("48 8B C4 48 89 58 18 55 56 57 41 54 41 55 41 56 41 57 48 8D A8 ? ? ? ? 48 81 EC ? ? ? ? 0F 29 70 B8 0F 29 78 A8 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 4C 8B FA");
 
 	if (!sig)
 		return StatusData(MethodStatus::Error, "[ClientInstance Hook] Failed to find Signature!");

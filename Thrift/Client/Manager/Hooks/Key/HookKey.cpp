@@ -44,7 +44,7 @@ auto KeyHookCallback(uint64_t key, bool isDown) -> void {
 auto Hook_Key::init(void) -> StatusData {
 
 	kMgr = this->mgr;
-	auto sig = Utils::findSig("48 ? ? 48 ? ? ? 4C 8D 05 ? ? ? ? 89");
+	auto sig = Utils::findSig("48 83 EC ? ? ? C1 4C 8D 05");
 
 	if (!sig)
 		return StatusData(MethodStatus::Error, "[Key Hook] Failed to find Signature!");

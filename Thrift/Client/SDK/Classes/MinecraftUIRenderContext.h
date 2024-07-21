@@ -4,6 +4,7 @@
 #include "../../Utils/Utils.h"
 #include "../../Utils/Math.h"
 
+
 class TextMeasureData {
 public:
     float scale;
@@ -27,9 +28,57 @@ public:
     };
 };
 
+class FilePath {//I pasted
+private:
+    char pad_0x0[0x18];
+public:
+    std::string filePathStr;
+};
+
+class TexturePtr {
+private:
+    char pad_0x0[0x18];
+public:
+    FilePath* filePath;
+};
+
+enum class ResourceFileSystem : int { //nrg sent me
+    UserPackage = 0x0,
+    AppPackage = 0x1,
+    Raw = 0x2,
+    RawPersistent = 0x3,
+    SettingsDir = 0x4,
+    ExternalDir = 0x5,
+    ServerPackage = 0x6,
+    DataDir = 0x7,
+    UserDir = 0x8,
+    ScreenshotsDir = 0x9,
+    StoreCache = 0xA,
+    Invalid = 0xB,
+};
+
+class ResourceLocation
+{
+public:
+    ResourceFileSystem type; //0x0
+private:
+    char fill[0x4];
+public:
+    std::string path; //0x8
+    __int64 pathHash;
+    __int64 fullHash;
+public:
+    ResourceLocation(ResourceFileSystem type, std::string path) {
+        this->type = type;
+        this->path = path;
+    }
+
+};
+
 class MinecraftUIRenderContext {
 public:
-	ClientInstance* clientInstance;
+    ClientInstance* clientInstance;
+
 private:
     virtual ~MinecraftUIRenderContext();
 public:
@@ -39,14 +88,15 @@ public:
     virtual auto drawDebugText(const float*, const std::string&, const float*, float, unsigned int, float*, void*) -> __int64;
     virtual auto drawText(Font*, const float*, const std::string&, const float*, float, unsigned int, const TextMeasureData*, const CaretMeasureData*) -> __int64;
     virtual auto flushText(float) -> void;
-    virtual auto drawImage(std::string*, Vec2<float>*, Vec2<float>*, Vec2<float>*, Vec2<float>*, bool, const float*, float) -> __int64;
+    virtual auto drawImage(TexturePtr*, Vec2<float>*, Vec2<float>*, Vec2<float>*, Vec2<float>*) -> __int64;
 private:
     //virtual auto Function7(void) -> void;
     virtual auto Function8(void) -> void;
-    virtual auto Function9(void) -> void;
+
+private:
     virtual auto Function10(void) -> void;
     virtual auto Function11(void) -> void;
 public:
     virtual auto drawRectangle(const float*, const float*, float, int) -> void;
-    virtual auto fillRectangle(const float*, const float*, float) -> void;
+    virtual auto fillRectangle(const Rect, const float*, float) -> void;
 };

@@ -97,6 +97,14 @@ public:
 		std::uniform_real_distribution<>dis(min, max);
 		return dis(gen);
 	};
+
+	template <typename R, typename... Args>
+	static R CallFunc(void* func, Args... args)
+	{
+		return ((R(*)(Args...))func)(args...);
+	}
+
+
 public:
 	static auto ColorConvertRGBtoHSV(float, float, float, float&, float&, float&) -> void;
 	static auto ColorConvertHSVtoRGB(float, float, float, float&, float&, float&) -> void;

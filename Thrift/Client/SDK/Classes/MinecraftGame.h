@@ -17,6 +17,6 @@ public:
 
 class MinecraftGame {
 public:
-	BUILD_ACCESS(bool, canUseKeys, 0x188);//Good as of 1.20.10
-	BUILD_ACCESS(Font*, mcfont, 0xEC0);//Good as of 1.20.10
+	BUILD_ACCESS(bool, canUseKeys, 0x1A8);//good for 1.20.62
+	BUILD_ACCESS(Font*, mcfont, 0xF48);//good for 1.20.51
 };
